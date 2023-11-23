@@ -41,7 +41,7 @@ body {
   min-height: 100vh;
   background-color: var(--Very-Light-Gray);
   background-color: var(--Very-Dark-Grayish-Blue);
-  color: var(--Dark-Grayish-Blue);
+  color: var(--Very-Dark-Grayish-Blue);
 }
 
 h1 {
@@ -55,4 +55,8 @@ h1 {
     hsl(192, 100%, 67%),
     hsl(280, 87%, 65%)
   );
+}
+
+input:focus {
+  outline: none;
 }

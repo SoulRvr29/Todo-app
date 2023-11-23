@@ -4,7 +4,10 @@ const Todo = ({ id, task, status, setStatus, deleteTask }) => {
   const [closeBtn, setCloseBtn] = useState(false);
   return (
     <div
-      className="todo flex justify-between items-center gap-2 bg-light-vl-gray border-b border-light-l-grayish-blue p-4"
+      className={
+        "todo flex justify-between items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4" +
+        (id == 0 ? " rounded-t-md" : " rounded-none")
+      }
       onMouseEnter={() => setCloseBtn(true)}
       onMouseLeave={() => setCloseBtn(false)}
     >
@@ -32,14 +35,14 @@ const Todo = ({ id, task, status, setStatus, deleteTask }) => {
       </button>
       <p
         className={
-          "hover:cursor-pointer" +
+          "hover:cursor-pointer w-full " +
           (status && " line-through text-light-l-grayish-blue")
         }
       >
         {task}
       </p>
       <button
-        className={!closeBtn ? "invisible" : "visible"}
+        className={!closeBtn ? "invisible " : "visible "}
         onClick={() => deleteTask(id)}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
