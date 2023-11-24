@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "./Header";
 import Todo from "./Todo";
+import Form from "./Form";
 import data from "./data/todo.json";
 
 function App() {
@@ -41,54 +42,52 @@ function App() {
     ]);
   };
 
-  const filterChange = (type) => {};
-
+  const filterChange = (type) => {
+    if (type == "active") {
+      setTasks(
+        tasks.map((task) =>
+          task.status == false
+            ? { ...task, visibility: false }
+            : { ...task, visibility: true }
+        )
+      );
+    } else if (type == "completed") {
+      setTasks(
+        tasks.map((task) =>
+          task.status == true
+            ? { ...task, visibility: false }
+            : { ...task, visibility: true }
+        )
+      );
+    } else
+      setTasks(
+        tasks.map((task) =>
+          task.visibility == false ? { ...task, visibility: true } : task
+        )
+      );
+  };
+  console.log(tasks);
   return (
     <div className="p-4 mt-6 max-w-lg mx-auto">
       <Header />
       <main>
-        <form
-          className="flex w-full items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4 mb-5 rounded-md"
-          onSubmit={(e) => {
-            e.preventDefault();
-            addTask();
-          }}
-        >
-          <button
-            onClick={() => setStatus(id)}
-            className="border hover:border-light-d-grayish-blue rounded-full border-light-vl-grayish-blue"
-          >
-            <svg
-              className={!status ? "invisible" : "visible"}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="-7 -8 24 24"
-              height="1.5em"
-            >
-              <path
-                fill="none"
-                stroke="white"
-                strokeWidth="2"
-                d="M1 4.304L3.696 7l6-6"
+        <Form addTask={addTask} setStatus={setStatus} setNewTask={setNewTask} />
+        {tasks.map(
+          (task) =>
+            // task.visibility == true && (
+            ((task.status == true && filter == "completed") ||
+              (task.status == false && filter == "active") ||
+              filter == "all") && (
+              <Todo
+                id={task.id}
+                key={task.id}
+                task={task.task}
+                status={task.status}
+                setStatus={setStatus}
+                deleteTask={deleteTask}
               />
-            </svg>
-          </button>
-          <input
-            type="text"
-            placeholder="Create a new todo..."
-            className="w-full bg-light-vl-gray caret-bright-blue"
-            onChange={(e) => setNewTask(e.target.value)}
-          />
-        </form>
-        {tasks.map((task) => (
-          <Todo
-            id={task.id}
-            key={task.id}
-            task={task.task}
-            status={task.status}
-            setStatus={setStatus}
-            deleteTask={deleteTask}
-          />
-        ))}
+            )
+        )}
         <footer className="bg-light-vl-gray flex justify-between text-xs px-4 py-3 text-light-d-grayish-blue rounded-b-md">
           <span>{itemsLeft} items left</span>
           <ul className="flex gap-2 font-bold">

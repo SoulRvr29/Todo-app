@@ -2,31 +2,37 @@
   {
     "id": 0,
     "task": "Complete online JavaScript course",
-    "status": true
+    "status": true,
+    "visibility": true
   },
   {
     "id": 1,
     "task": "Jog around the park 3x",
-    "status": false
+    "status": false,
+    "visibility": true
   },
   {
     "id": 2,
     "task": "10 minutes meditation",
-    "status": false
+    "status": false,
+    "visibility": true
   },
   {
     "id": 3,
     "task": "Read for 1 hour",
-    "status": false
+    "status": false,
+    "visibility": true
   },
   {
     "id": 4,
     "task": "Pick up groceries",
-    "status": false
+    "status": false,
+    "visibility": true
   },
   {
     "id": 5,
     "task": "Complete Todo App on Frontend Mentor",
-    "status": false
+    "status": false,
+    "visibility": true
   }
 ]
