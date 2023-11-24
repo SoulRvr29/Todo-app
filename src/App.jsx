@@ -3,9 +3,9 @@ import Header from "./Header";
 import Todo from "./Todo";
 import Form from "./Form";
 import data from "./data/todo.json";
+import Footer from "./Footer";
 
 function App() {
-  // const [tasks, setTasks] = useState(data);
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("todoData")) || data
   );
@@ -63,7 +63,7 @@ function App() {
       />
       <div className="p-4 my-6 max-w-lg w-full mx-auto">
         <Header />
-        <main className="drop-shadow-2xl">
+        <main className="drop-shadow-2xl mb-14 max-sm:mb-24">
           <Form
             addTask={addTask}
             setStatus={setStatus}
@@ -138,6 +138,7 @@ function App() {
           </footer>
         </main>
       </div>
+      <Footer />
     </div>
   );
 }

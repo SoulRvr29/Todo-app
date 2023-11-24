@@ -40,6 +40,7 @@ body {
   min-height: 100vh;
   background-color: var(--Very-Light-Gray);
   color: var(--Very-Dark-Grayish-Blue);
+  animation: fadeIn 1s forwards;
 }
 
 h1 {
