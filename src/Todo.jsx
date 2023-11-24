@@ -5,7 +5,7 @@ const Todo = ({ id, task, status, setStatus, deleteTask }) => {
   return (
     <div
       className={
-        "todo flex justify-between items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4" +
+        "todo flex justify-between items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4 max-sm:p-2 max-sm:gap-3  " +
         (id == 0 ? " rounded-t-md" : " rounded-none")
       }
       onMouseEnter={() => setCloseBtn(true)}
@@ -15,8 +15,8 @@ const Todo = ({ id, task, status, setStatus, deleteTask }) => {
         onClick={() => setStatus(id)}
         className={
           status
-            ? "check-btn rounded-full border border-light-vl-grayish-blue"
-            : "border hover:border-light-d-grayish-blue rounded-full border-light-vl-grayish-blue"
+            ? "check-btn rounded-full border border-light-vl-grayish-blue max-sm:scale-75"
+            : "border hover:border-light-d-grayish-blue rounded-full border-light-vl-grayish-blue max-sm:scale-75"
         }
       >
         <svg
@@ -35,17 +35,22 @@ const Todo = ({ id, task, status, setStatus, deleteTask }) => {
       </button>
       <p
         className={
-          "hover:cursor-pointer w-full " +
+          "hover:cursor-pointer w-full max-sm:text-xs " +
           (status && " line-through text-light-l-grayish-blue")
         }
       >
         {task}
       </p>
       <button
-        className={!closeBtn ? "invisible " : "visible "}
+        className={!closeBtn ? "invisible max-sm:visible " : "visible "}
         onClick={() => deleteTask(id)}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          className="max-sm:scale-75"
+        >
           <path
             fill="#494C6B"
             fillRule="evenodd"

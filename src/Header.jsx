@@ -1,10 +1,15 @@
 const Header = () => {
   return (
     <header className="flex justify-between my-4">
-      <h1 className="text-light-vl-gray uppercase tracking-[10px] font-bold text-3xl">
+      <h1 className="text-light-vl-gray uppercase tracking-[10px] font-bold text-3xl max-sm:text-2xl">
         todo
       </h1>
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="26"
+        height="26"
+        className="max-sm:scale-75"
+      >
         <path
           fill="#FFF"
           fillRule="evenodd"

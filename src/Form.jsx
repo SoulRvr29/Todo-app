@@ -1,7 +1,7 @@
 const form = ({ addTask, setStatus, setNewTask }) => {
   return (
     <form
-      className="flex w-full items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4 mb-5 rounded-md"
+      className="flex w-full items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4 mb-5 max-sm:p-2 max-sm:gap-3 rounded-md"
       onSubmit={(e) => {
         e.preventDefault();
         addTask();
@@ -10,7 +10,7 @@ const form = ({ addTask, setStatus, setNewTask }) => {
     >
       <button
         onClick={() => setStatus(id)}
-        className="border hover:border-light-d-grayish-blue rounded-full border-light-vl-grayish-blue"
+        className="border hover:border-light-d-grayish-blue rounded-full border-light-vl-grayish-blue max-sm:scale-75"
       >
         <svg
           className={!status ? "invisible" : "visible"}
@@ -29,7 +29,7 @@ const form = ({ addTask, setStatus, setNewTask }) => {
       <input
         type="text"
         placeholder="Create a new todo..."
-        className="w-full bg-light-vl-gray caret-bright-blue"
+        className="w-full bg-light-vl-gray caret-bright-blue max-sm:text-xs"
         onChange={(e) => setNewTask(e.target.value)}
       />
     </form>

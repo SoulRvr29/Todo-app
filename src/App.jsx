@@ -45,75 +45,86 @@ function App() {
       { id: tasks.length + 1, task: newTask, status: false },
     ]);
   };
-  console.log(tasks);
+
   return (
-    <div className="p-4 mt-6 max-w-lg mx-auto">
-      <Header />
-      <main>
-        <Form addTask={addTask} setStatus={setStatus} setNewTask={setNewTask} />
-        {tasks.map(
-          (task) =>
-            ((task.status == true && filter == "completed") ||
-              (task.status == false && filter == "active") ||
-              filter == "all") && (
-              <Todo
-                id={task.id}
-                key={task.id}
-                task={task.task}
-                status={task.status}
-                setStatus={setStatus}
-                deleteTask={deleteTask}
-              />
-            )
-        )}
-        <footer className="bg-light-vl-gray flex justify-between text-xs px-4 py-3 text-light-d-grayish-blue rounded-b-md">
-          <span>{itemsLeft} items left</span>
-          <ul className="flex gap-2 font-bold">
-            <li
-              className={
-                "hover:cursor-pointer hover:text-light-vd-grayish-blue" +
-                (filter == "all" && " text-bright-blue")
-              }
-              onClick={() => {
-                setFilter("all");
-                filterChange("all");
-              }}
+    <div className="w-screen h-screen grid ">
+      <img
+        src="../public/bg-desktop-light.jpg"
+        alt="background image"
+        className="fixed top-0 justify-self-center min-w-max -z-10"
+      />
+      <div className="p-4 my-6 max-w-lg w-full mx-auto">
+        <Header />
+        <main className="drop-shadow-2xl">
+          <Form
+            addTask={addTask}
+            setStatus={setStatus}
+            setNewTask={setNewTask}
+          />
+          {tasks.map(
+            (task) =>
+              ((task.status == true && filter == "completed") ||
+                (task.status == false && filter == "active") ||
+                filter == "all") && (
+                <Todo
+                  id={task.id}
+                  key={task.id}
+                  task={task.task}
+                  status={task.status}
+                  setStatus={setStatus}
+                  deleteTask={deleteTask}
+                />
+              )
+          )}
+          <footer className="bg-light-vl-gray flex justify-between text-xs px-4 py-3 text-light-d-grayish-blue rounded-b-md">
+            <span>{itemsLeft} items left</span>
+            <ul className=" flex gap-2 font-bold max-sm:absolute max-sm:-bottom-14 max-sm:w-full max-sm:bg-light-vl-gray max-sm:left-0 max-sm:justify-center max-sm:rounded-md max-sm:py-3 max-sm:text-sm max-sm:gap-4">
+              <li
+                className={
+                  "hover:cursor-pointer hover:text-light-vd-grayish-blue " +
+                  (filter == "all" && " text-bright-blue")
+                }
+                onClick={() => {
+                  setFilter("all");
+                  filterChange("all");
+                }}
+              >
+                All
+              </li>
+              <li
+                className={
+                  "hover:cursor-pointer hover:text-light-vd-grayish-blue " +
+                  (filter == "active" && " text-bright-blue")
+                }
+                onClick={() => {
+                  setFilter("active");
+                  filterChange("active");
+                }}
+              >
+                Active
+              </li>
+              <li
+                className={
+                  "hover:cursor-pointer hover:text-light-vd-grayish-blue " +
+                  (filter == "completed" && " text-bright-blue")
+                }
+                onClick={() => {
+                  setFilter("completed");
+                  filterChange("completed");
+                }}
+              >
+                Completed
+              </li>
+            </ul>
+            <button
+              className="hover:text-light-vd-grayish-blue "
+              onClick={() => deleteCompleted()}
             >
-              All
-            </li>
-            <li
-              className={
-                "hover:cursor-pointer hover:text-light-vd-grayish-blue" +
-                (filter == "active" && " text-bright-blue")
-              }
-              onClick={() => {
-                setFilter("active");
-                filterChange("active");
-              }}
-            >
-              Active
-            </li>
-            <li
-              className={
-                "hover:cursor-pointer hover:text-light-vd-grayish-blue" +
-                (filter == "completed" && " text-bright-blue")
-              }
-              onClick={() => {
-                setFilter("completed");
-                filterChange("completed");
-              }}
-            >
-              Completed
-            </li>
-          </ul>
-          <button
-            className="hover:text-light-vd-grayish-blue"
-            onClick={() => deleteCompleted()}
-          >
-            Clear Completed
-          </button>
-        </footer>
-      </main>
+              Clear Completed
+            </button>
+          </footer>
+        </main>
+      </div>
     </div>
   );
 }
