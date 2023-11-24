@@ -5,6 +5,7 @@ const form = ({ addTask, setStatus, setNewTask }) => {
       onSubmit={(e) => {
         e.preventDefault();
         addTask();
+        e.target.reset();
       }}
     >
       <button

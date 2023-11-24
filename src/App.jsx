@@ -35,36 +35,15 @@ function App() {
     setTasks(tasks.filter((task) => task.id != id));
   };
 
+  const deleteCompleted = () => {
+    setTasks(tasks.filter((task) => task.status == false));
+  };
+
   const addTask = () => {
     setTasks([
       ...tasks,
       { id: tasks.length + 1, task: newTask, status: false },
     ]);
-  };
-
-  const filterChange = (type) => {
-    if (type == "active") {
-      setTasks(
-        tasks.map((task) =>
-          task.status == false
-            ? { ...task, visibility: false }
-            : { ...task, visibility: true }
-        )
-      );
-    } else if (type == "completed") {
-      setTasks(
-        tasks.map((task) =>
-          task.status == true
-            ? { ...task, visibility: false }
-            : { ...task, visibility: true }
-        )
-      );
-    } else
-      setTasks(
-        tasks.map((task) =>
-          task.visibility == false ? { ...task, visibility: true } : task
-        )
-      );
   };
   console.log(tasks);
   return (
@@ -74,7 +53,6 @@ function App() {
         <Form addTask={addTask} setStatus={setStatus} setNewTask={setNewTask} />
         {tasks.map(
           (task) =>
-            // task.visibility == true && (
             ((task.status == true && filter == "completed") ||
               (task.status == false && filter == "active") ||
               filter == "all") && (
@@ -128,7 +106,10 @@ function App() {
               Completed
             </li>
           </ul>
-          <button className="hover:text-light-vd-grayish-blue">
+          <button
+            className="hover:text-light-vd-grayish-blue"
+            onClick={() => deleteCompleted()}
+          >
             Clear Completed
           </button>
         </footer>
