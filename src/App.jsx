@@ -57,7 +57,7 @@ function App() {
   return (
     <div className="w-screen h-screen grid ">
       <img
-        src="../public/bg-desktop-light.jpg"
+        src="bg-desktop-light.jpg"
         alt="background image"
         className="fixed top-0 justify-self-center min-w-max -z-10"
       />
