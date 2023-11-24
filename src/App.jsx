@@ -5,7 +5,10 @@ import Form from "./Form";
 import data from "./data/todo.json";
 
 function App() {
-  const [tasks, setTasks] = useState(data);
+  // const [tasks, setTasks] = useState(data);
+  const [tasks, setTasks] = useState(
+    JSON.parse(localStorage.getItem("todoData")) || data
+  );
   const [newTask, setNewTask] = useState("");
   const [itemsLeft, setItemsLeft] = useState(0);
   const [filter, setFilter] = useState("all");
@@ -17,6 +20,10 @@ function App() {
     });
     setItemsLeft(sum);
   };
+
+  useEffect(() => {
+    localStorage.setItem("todoData", JSON.stringify(tasks));
+  }, [tasks]);
 
   useEffect(() => {
     updateLeftCounter();
@@ -40,10 +47,11 @@ function App() {
   };
 
   const addTask = () => {
-    setTasks([
-      ...tasks,
-      { id: tasks.length + 1, task: newTask, status: false },
-    ]);
+    let lastId = 0;
+    tasks.forEach((task) => {
+      if (task.id > lastId) lastId = task.id;
+    });
+    setTasks([...tasks, { id: lastId + 1, task: newTask, status: false }]);
   };
 
   return (
@@ -75,6 +83,11 @@ function App() {
                   deleteTask={deleteTask}
                 />
               )
+          )}
+          {!tasks.length && (
+            <div className="text-center justify-between items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4 max-sm:p-2 max-sm:gap-3 rounded-t-md  ">
+              List is empty.
+            </div>
           )}
           <footer className="bg-light-vl-gray flex justify-between text-xs px-4 py-3 text-light-d-grayish-blue rounded-b-md">
             <span>{itemsLeft} items left</span>
