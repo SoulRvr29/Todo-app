@@ -12,8 +12,11 @@ function App() {
   const [newTask, setNewTask] = useState("");
   const [itemsLeft, setItemsLeft] = useState(0);
   const [filter, setFilter] = useState("all");
+  let actualItemsLeft = itemsLeft;
 
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    JSON.parse(localStorage.getItem("todoDarkMode")) || false
+  );
   const darkModeToggle = () => {
     setDarkMode(!darkMode);
     darkMode
@@ -21,29 +24,31 @@ function App() {
       : document.querySelector("html").classList.add("dark");
   };
 
-  const updateLeftCounter = () => {
+  useEffect(() => {
+    localStorage.setItem("todoData", JSON.stringify(tasks));
+    localStorage.setItem("todoDarkMode", JSON.stringify(darkMode));
+  }, [tasks, darkMode]);
+
+  useEffect(() => {
     let sum = 0;
     tasks.forEach((task) => {
       if (task.status == false) sum++;
     });
     setItemsLeft(sum);
-  };
-
-  useEffect(() => {
-    localStorage.setItem("todoData", JSON.stringify(tasks));
-  }, [tasks]);
-
-  useEffect(() => {
-    updateLeftCounter();
+    !darkMode
+      ? document.querySelector("html").classList.remove("dark")
+      : document.querySelector("html").classList.add("dark");
   }, []);
 
   const setStatus = (id) => {
+    if (tasks[id].status == true) actualItemsLeft++;
+    else actualItemsLeft--;
     setTasks(
       tasks.map((task) =>
         task.id == id ? { ...task, status: !task.status } : task
       )
     );
-    updateLeftCounter();
+    setItemsLeft(actualItemsLeft);
   };
 
   const deleteTask = (id) => {
@@ -64,11 +69,18 @@ function App() {
 
   return (
     <div className="w-screen h-screen grid ">
-      <img
-        src={darkMode ? "bg-desktop-dark.jpg" : "bg-desktop-light.jpg"}
-        alt="background image"
-        className="fixed top-0 justify-self-center min-w-max -z-10"
-      />
+      <picture className="fixed top-0 justify-self-center min-w-max -z-10">
+        <source
+          media="(min-width: 376px )"
+          srcSet={darkMode ? "bg-desktop-dark.jpg" : "bg-desktop-light.jpg"}
+        />
+        <source
+          media="(max-width: 375px )"
+          srcSet={darkMode ? "bg-mobile-dark.jpg" : "bg-mobile-light.jpg"}
+        />
+        <img src="bg-desktop-dark.jpg" alt="bg image" />
+      </picture>
+
       <div className="p-4 my-6 max-w-lg w-full mx-auto ">
         <Header darkMode={darkMode} darkModeToggle={darkModeToggle} />
         <main className="drop-shadow-2xl mb-14 max-sm:mb-24">

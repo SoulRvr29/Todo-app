@@ -42,6 +42,7 @@ body {
   color: var(--Very-Dark-Grayish-Blue);
   animation: fadeIn 1s forwards;
 }
+
 .dark body {
   background-color: var(--Very-Dark-Blue);
   color: var(--Light-Grayish-Blue);
