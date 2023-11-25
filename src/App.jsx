@@ -13,6 +13,14 @@ function App() {
   const [itemsLeft, setItemsLeft] = useState(0);
   const [filter, setFilter] = useState("all");
 
+  const [darkMode, setDarkMode] = useState(false);
+  const darkModeToggle = () => {
+    setDarkMode(!darkMode);
+    darkMode
+      ? document.querySelector("html").classList.remove("dark")
+      : document.querySelector("html").classList.add("dark");
+  };
+
   const updateLeftCounter = () => {
     let sum = 0;
     tasks.forEach((task) => {
@@ -57,12 +65,12 @@ function App() {
   return (
     <div className="w-screen h-screen grid ">
       <img
-        src="bg-desktop-light.jpg"
+        src={darkMode ? "bg-desktop-dark.jpg" : "bg-desktop-light.jpg"}
         alt="background image"
         className="fixed top-0 justify-self-center min-w-max -z-10"
       />
-      <div className="p-4 my-6 max-w-lg w-full mx-auto">
-        <Header />
+      <div className="p-4 my-6 max-w-lg w-full mx-auto ">
+        <Header darkMode={darkMode} darkModeToggle={darkModeToggle} />
         <main className="drop-shadow-2xl mb-14 max-sm:mb-24">
           <Form
             addTask={addTask}
@@ -89,12 +97,12 @@ function App() {
               List is empty.
             </div>
           )}
-          <footer className="bg-light-vl-gray flex justify-between text-xs px-4 py-3 text-light-d-grayish-blue rounded-b-md">
+          <footer className="bg-light-vl-gray dark:bg-dark-vd-desaturated-blue dark:text-dark-d-grayish-blue flex justify-between text-xs px-4 py-3 text-light-d-grayish-blue rounded-b-md">
             <span>{itemsLeft} items left</span>
-            <ul className=" flex gap-2 font-bold max-sm:absolute max-sm:-bottom-14 max-sm:w-full max-sm:bg-light-vl-gray max-sm:left-0 max-sm:justify-center max-sm:rounded-md max-sm:py-3 max-sm:text-sm max-sm:gap-4">
+            <ul className=" flex gap-2 font-bold max-sm:absolute max-sm:-bottom-14 max-sm:w-full max-sm:bg-light-vl-gray max-sm:dark:bg-dark-vd-desaturated-blue max-sm:left-0 max-sm:justify-center max-sm:rounded-md max-sm:py-3 max-sm:text-sm max-sm:gap-4">
               <li
                 className={
-                  "hover:cursor-pointer hover:text-light-vd-grayish-blue " +
+                  "hover:cursor-pointer hover:text-light-vd-grayish-blue dark:hover:text-dark-l-grayish-blue-hover " +
                   (filter == "all" && " text-bright-blue")
                 }
                 onClick={() => {
@@ -106,7 +114,7 @@ function App() {
               </li>
               <li
                 className={
-                  "hover:cursor-pointer hover:text-light-vd-grayish-blue " +
+                  "hover:cursor-pointer hover:text-light-vd-grayish-blue dark:hover:text-dark-l-grayish-blue-hover " +
                   (filter == "active" && " text-bright-blue")
                 }
                 onClick={() => {
@@ -118,7 +126,7 @@ function App() {
               </li>
               <li
                 className={
-                  "hover:cursor-pointer hover:text-light-vd-grayish-blue " +
+                  "hover:cursor-pointer hover:text-light-vd-grayish-blue dark:hover:text-dark-l-grayish-blue-hover " +
                   (filter == "completed" && " text-bright-blue")
                 }
                 onClick={() => {
@@ -130,7 +138,7 @@ function App() {
               </li>
             </ul>
             <button
-              className="hover:text-light-vd-grayish-blue "
+              className="hover:text-light-vd-grayish-blue dark:hover:text-dark-l-grayish-blue-hover "
               onClick={() => deleteCompleted()}
             >
               Clear Completed

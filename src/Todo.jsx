@@ -5,7 +5,7 @@ const Todo = ({ id, task, status, setStatus, deleteTask }) => {
   return (
     <div
       className={
-        "todo flex justify-between items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4 max-sm:p-2 max-sm:gap-3  " +
+        "todo flex justify-between items-center gap-5 bg-light-vl-gray dark:bg-dark-vd-desaturated-blue dark:border-dark-vd-grayish-blue border-b border-light-l-grayish-blue p-4 max-sm:p-2 max-sm:gap-3  " +
         (id == 0 ? " rounded-t-md" : " rounded-none")
       }
       onMouseEnter={() => setCloseBtn(true)}
@@ -15,8 +15,8 @@ const Todo = ({ id, task, status, setStatus, deleteTask }) => {
         onClick={() => setStatus(id)}
         className={
           status
-            ? "check-btn rounded-full border border-light-vl-grayish-blue max-sm:scale-75"
-            : "border hover:border-light-d-grayish-blue rounded-full border-light-vl-grayish-blue max-sm:scale-75"
+            ? "check-btn rounded-full border border-light-vl-grayish-blue dark:border-dark-vd-grayish-blue  max-sm:scale-75"
+            : "border dark:border-dark-vd-grayish-blue hover:border-light-d-grayish-blue dark:hover:border-dark-d-grayish-blue rounded-full border-light-vl-grayish-blue max-sm:scale-75"
         }
       >
         <svg
@@ -36,7 +36,8 @@ const Todo = ({ id, task, status, setStatus, deleteTask }) => {
       <p
         className={
           "hover:cursor-pointer w-full max-sm:text-xs " +
-          (status && " line-through text-light-l-grayish-blue")
+          (status &&
+            " line-through text-light-l-grayish-blue dark:text-dark-d-grayish-blue")
         }
       >
         {task}
