@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Todo = ({ id, task, status, setStatus, deleteTask }) => {
+const Todo = ({ id, index, task, status, setStatus, deleteTask }) => {
   const [closeBtn, setCloseBtn] = useState(false);
   return (
     <div
@@ -12,7 +12,7 @@ const Todo = ({ id, task, status, setStatus, deleteTask }) => {
       onMouseLeave={() => setCloseBtn(false)}
     >
       <button
-        onClick={() => setStatus(id)}
+        onClick={() => setStatus(id, index)}
         className={
           status
             ? "check-btn rounded-full border border-light-vl-grayish-blue dark:border-dark-vd-grayish-blue  max-sm:scale-75"
@@ -44,7 +44,7 @@ const Todo = ({ id, task, status, setStatus, deleteTask }) => {
       </p>
       <button
         className={!closeBtn ? "invisible max-sm:visible " : "visible "}
-        onClick={() => deleteTask(id)}
+        onClick={() => deleteTask(id, index)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

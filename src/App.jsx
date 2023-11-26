@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
-import Header from "./Header";
-import Todo from "./Todo";
-import Form from "./Form";
+import Header from "./components/Header";
+import Todo from "./components/Todo";
+import Form from "./components/Form";
 import data from "./data/todo.json";
-import Footer from "./Footer";
+import Footer from "./components/Footer";
 
 function App() {
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("todoData")) || data
+  );
+
+  const [todoLength, setTodoLength] = useState(
+    document.querySelectorAll(".todo").length
   );
   const [newTask, setNewTask] = useState("");
   const [itemsLeft, setItemsLeft] = useState(0);
@@ -27,7 +31,8 @@ function App() {
   useEffect(() => {
     localStorage.setItem("todoData", JSON.stringify(tasks));
     localStorage.setItem("todoDarkMode", JSON.stringify(darkMode));
-  }, [tasks, darkMode]);
+    setTodoLength(document.querySelectorAll(".todo").length);
+  }, [tasks, darkMode, filter]);
 
   useEffect(() => {
     let sum = 0;
@@ -40,8 +45,8 @@ function App() {
       : document.querySelector("html").classList.add("dark");
   }, []);
 
-  const setStatus = (id) => {
-    if (tasks[id].status == true) actualItemsLeft++;
+  const setStatus = (id, index) => {
+    if (tasks[index].status == true) actualItemsLeft++;
     else actualItemsLeft--;
     setTasks(
       tasks.map((task) =>
@@ -51,8 +56,12 @@ function App() {
     setItemsLeft(actualItemsLeft);
   };
 
-  const deleteTask = (id) => {
+  const deleteTask = (id, index) => {
     setTasks(tasks.filter((task) => task.id != id));
+    if (tasks[index].status == false) {
+      actualItemsLeft--;
+      setItemsLeft(actualItemsLeft);
+    }
   };
 
   const deleteCompleted = () => {
@@ -65,6 +74,8 @@ function App() {
       if (task.id > lastId) lastId = task.id;
     });
     setTasks([...tasks, { id: lastId + 1, task: newTask, status: false }]);
+    actualItemsLeft++;
+    setItemsLeft(actualItemsLeft);
   };
 
   return (
@@ -90,11 +101,12 @@ function App() {
             setNewTask={setNewTask}
           />
           {tasks.map(
-            (task) =>
+            (task, index) =>
               ((task.status == true && filter == "completed") ||
                 (task.status == false && filter == "active") ||
                 filter == "all") && (
                 <Todo
+                  index={index}
                   id={task.id}
                   key={task.id}
                   task={task.task}
@@ -104,9 +116,15 @@ function App() {
                 />
               )
           )}
-          {!tasks.length && (
-            <div className="text-center justify-between items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4 max-sm:p-2 max-sm:gap-3 rounded-t-md  ">
-              List is empty.
+          {todoLength == 0 && (
+            <div className="text-center justify-between items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4 max-sm:p-2 max-sm:gap-3 rounded-t-md dark:bg-dark-vd-desaturated-blue dark:border-dark-vd-grayish-blue ">
+              {filter == "all" ? (
+                <p>List is empty</p>
+              ) : filter == "active" ? (
+                <p>No active todo</p>
+              ) : (
+                <p>No completed todo</p>
+              )}
             </div>
           )}
           <footer className="bg-light-vl-gray dark:bg-dark-vd-desaturated-blue dark:text-dark-d-grayish-blue flex justify-between text-xs px-4 py-3 text-light-d-grayish-blue rounded-b-md">
@@ -119,7 +137,6 @@ function App() {
                 }
                 onClick={() => {
                   setFilter("all");
-                  filterChange("all");
                 }}
               >
                 All
@@ -131,7 +148,6 @@ function App() {
                 }
                 onClick={() => {
                   setFilter("active");
-                  filterChange("active");
                 }}
               >
                 Active
@@ -143,7 +159,6 @@ function App() {
                 }
                 onClick={() => {
                   setFilter("completed");
-                  filterChange("completed");
                 }}
               >
                 Completed
