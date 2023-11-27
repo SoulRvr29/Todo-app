@@ -74,3 +74,8 @@ h1 {
 input:focus {
   outline: none;
 }
+
+.draggable {
+  top: auto !important;
+  left: auto !important;
+}

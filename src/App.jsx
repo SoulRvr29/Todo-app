@@ -4,6 +4,7 @@ import Todo from "./components/Todo";
 import Form from "./components/Form";
 import data from "./data/todo.json";
 import Footer from "./components/Footer";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function App() {
   // STATES
@@ -80,6 +81,29 @@ function App() {
     setTasks(tasks.filter((task) => task.status == false));
   };
 
+  const handleDragDrop = (results) => {
+    const { source, destination, type } = results;
+
+    if (!destination) return;
+
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    )
+      return;
+
+    if (type === "group") {
+      const reorderedTasks = [...tasks];
+
+      const sourceIndex = source.index;
+      const destinationIndex = destination.index;
+
+      const [removedTask] = reorderedTasks.splice(sourceIndex, 1);
+      reorderedTasks.splice(destinationIndex, 0, removedTask);
+      return setTasks(reorderedTasks);
+    }
+  };
+
   return (
     <div className="w-screen h-screen grid ">
       <picture className="fixed top-0 justify-self-center min-w-max -z-10">
@@ -96,28 +120,53 @@ function App() {
 
       <div className="p-4 my-6 max-w-lg w-full mx-auto ">
         <Header darkMode={darkMode} darkModeToggle={darkModeToggle} />
-        <main className="drop-shadow-2xl mb-14 max-sm:mb-24">
+        {/* <main> */}
+        <main className=" drop-shadow-2xl mb-14 max-sm:mb-24">
           <Form
             addTask={addTask}
             setStatus={setStatus}
             setNewTask={setNewTask}
           />
-          {tasks.map(
-            (task, index) =>
-              ((task.status == true && filter == "completed") ||
-                (task.status == false && filter == "active") ||
-                filter == "all") && (
-                <Todo
-                  index={index}
-                  id={task.id}
-                  key={task.id}
-                  task={task.task}
-                  status={task.status}
-                  setStatus={setStatus}
-                  deleteTask={deleteTask}
-                />
-              )
-          )}
+          <DragDropContext onDragEnd={handleDragDrop}>
+            <Droppable droppableId="ROOT" type="group">
+              {(provided) => (
+                <div {...provided.droppableProps} ref={provided.innerRef}>
+                  {tasks.map(
+                    (task, index) =>
+                      ((task.status == true && filter == "completed") ||
+                        (task.status == false && filter == "active") ||
+                        filter == "all") && (
+                        <Draggable
+                          draggableId={String(task.id)}
+                          key={task.id}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              className="draggable"
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                              ref={provided.innerRef}
+                            >
+                              <Todo
+                                index={index}
+                                id={task.id}
+                                key={task.id}
+                                task={task.task}
+                                status={task.status}
+                                setStatus={setStatus}
+                                deleteTask={deleteTask}
+                              />
+                            </div>
+                          )}
+                        </Draggable>
+                      )
+                  )}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
           {todoLength == 0 && (
             <div className="text-center justify-between items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4 max-sm:p-2 max-sm:gap-3 rounded-t-md dark:bg-dark-vd-desaturated-blue dark:border-dark-vd-grayish-blue ">
               {filter == "all" ? (
