@@ -6,10 +6,10 @@ import data from "./data/todo.json";
 import Footer from "./components/Footer";
 
 function App() {
+  // STATES
   const [tasks, setTasks] = useState(
     JSON.parse(localStorage.getItem("todoData")) || data
   );
-
   const [todoLength, setTodoLength] = useState(
     document.querySelectorAll(".todo").length
   );
@@ -17,17 +17,11 @@ function App() {
   const [itemsLeft, setItemsLeft] = useState(0);
   const [filter, setFilter] = useState("all");
   let actualItemsLeft = itemsLeft;
-
   const [darkMode, setDarkMode] = useState(
     JSON.parse(localStorage.getItem("todoDarkMode")) || false
   );
-  const darkModeToggle = () => {
-    setDarkMode(!darkMode);
-    darkMode
-      ? document.querySelector("html").classList.remove("dark")
-      : document.querySelector("html").classList.add("dark");
-  };
 
+  // USE EFFECTS
   useEffect(() => {
     localStorage.setItem("todoData", JSON.stringify(tasks));
     localStorage.setItem("todoDarkMode", JSON.stringify(darkMode));
@@ -45,6 +39,14 @@ function App() {
       : document.querySelector("html").classList.add("dark");
   }, []);
 
+  // FUNCTIONS
+  const darkModeToggle = () => {
+    setDarkMode(!darkMode);
+    darkMode
+      ? document.querySelector("html").classList.remove("dark")
+      : document.querySelector("html").classList.add("dark");
+  };
+
   const setStatus = (id, index) => {
     if (tasks[index].status == true) actualItemsLeft++;
     else actualItemsLeft--;
@@ -53,6 +55,16 @@ function App() {
         task.id == id ? { ...task, status: !task.status } : task
       )
     );
+    setItemsLeft(actualItemsLeft);
+  };
+
+  const addTask = () => {
+    let lastId = 0;
+    tasks.forEach((task) => {
+      if (task.id > lastId) lastId = task.id;
+    });
+    setTasks([...tasks, { id: lastId + 1, task: newTask, status: false }]);
+    actualItemsLeft++;
     setItemsLeft(actualItemsLeft);
   };
 
@@ -66,16 +78,6 @@ function App() {
 
   const deleteCompleted = () => {
     setTasks(tasks.filter((task) => task.status == false));
-  };
-
-  const addTask = () => {
-    let lastId = 0;
-    tasks.forEach((task) => {
-      if (task.id > lastId) lastId = task.id;
-    });
-    setTasks([...tasks, { id: lastId + 1, task: newTask, status: false }]);
-    actualItemsLeft++;
-    setItemsLeft(actualItemsLeft);
   };
 
   return (

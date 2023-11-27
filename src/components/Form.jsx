@@ -8,10 +8,7 @@ const form = ({ addTask, setStatus, setNewTask }) => {
         e.target.reset();
       }}
     >
-      <button
-        // onClick={() => setStatus(id)}
-        className="border dark:hover:border-dark-d-grayish-blue hover:border-light-d-grayish-blue dark:border-dark-vd-grayish-blue rounded-full border-light-vl-grayish-blue max-sm:scale-75"
-      >
+      <button className="border dark:hover:border-dark-d-grayish-blue hover:border-light-d-grayish-blue dark:border-dark-vd-grayish-blue rounded-full border-light-vl-grayish-blue max-sm:scale-75">
         <svg
           className={!status ? "invisible" : "visible"}
           xmlns="http://www.w3.org/2000/svg"

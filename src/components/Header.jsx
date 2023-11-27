@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const Header = ({ darkMode, darkModeToggle }) => {
   return (
     <header className="flex justify-between my-4">

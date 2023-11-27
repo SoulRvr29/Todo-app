@@ -5,7 +5,7 @@ const Todo = ({ id, index, task, status, setStatus, deleteTask }) => {
   return (
     <div
       className={
-        "todo flex justify-between items-center gap-5 bg-light-vl-gray dark:bg-dark-vd-desaturated-blue dark:border-dark-vd-grayish-blue border-b border-light-l-grayish-blue p-4 max-sm:p-2 max-sm:gap-3  " +
+        "todo flex hover:cursor-grab justify-between items-center gap-5 bg-light-vl-gray dark:bg-dark-vd-desaturated-blue bg-gradient-to-t from-[rgba(0,0,0,0.05)] to-[rgba(255,255,255,0.02)] dark:border-dark-vd-grayish-blue border-b border-light-l-grayish-blue p-4 max-sm:p-2 max-sm:gap-3  " +
         (id == 0 ? " rounded-t-md" : " rounded-none")
       }
       onMouseEnter={() => setCloseBtn(true)}
@@ -35,7 +35,7 @@ const Todo = ({ id, index, task, status, setStatus, deleteTask }) => {
       </button>
       <p
         className={
-          "hover:cursor-pointer w-full max-sm:text-xs " +
+          "hover:cursor-grab w-full max-sm:text-xs " +
           (status &&
             " line-through text-light-l-grayish-blue dark:text-dark-d-grayish-blue")
         }
