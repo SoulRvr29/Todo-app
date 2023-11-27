@@ -41,6 +41,7 @@ body {
   background-color: var(--Very-Light-Gray);
   color: var(--Very-Dark-Grayish-Blue);
   animation: fadeIn 1s forwards;
+  overflow-x: hidden;
 }
 
 .dark body {

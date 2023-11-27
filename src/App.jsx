@@ -118,7 +118,7 @@ function App() {
         <img src="bg-desktop-dark.jpg" alt="bg image" />
       </picture>
 
-      <div className="p-4 my-6 max-w-lg w-full mx-auto ">
+      <div className="p-5 my-6 max-w-lg w-full mx-auto ">
         <Header darkMode={darkMode} darkModeToggle={darkModeToggle} />
         {/* <main> */}
         <main className=" drop-shadow-2xl mb-14 max-sm:mb-24">
@@ -172,15 +172,15 @@ function App() {
               {filter == "all" ? (
                 <p>List is empty</p>
               ) : filter == "active" ? (
-                <p>No active todo</p>
+                <p>No active todos</p>
               ) : (
-                <p>No completed todo</p>
+                <p>No completed todos</p>
               )}
             </div>
           )}
-          <footer className="bg-light-vl-gray dark:bg-dark-vd-desaturated-blue dark:text-dark-d-grayish-blue flex justify-between text-xs px-4 py-3 text-light-d-grayish-blue rounded-b-md">
-            <span>{itemsLeft} items left</span>
-            <ul className=" flex gap-2 font-bold max-sm:absolute max-sm:-bottom-14 max-sm:w-full max-sm:bg-light-vl-gray max-sm:dark:bg-dark-vd-desaturated-blue max-sm:left-0 max-sm:justify-center max-sm:rounded-md max-sm:py-3 max-sm:text-sm max-sm:gap-4">
+          <footer className="bg-light-vl-gray dark:bg-dark-vd-desaturated-blue dark:text-dark-d-grayish-blue flex justify-between text-xs px-5 py-3 text-light-d-grayish-blue rounded-b-md">
+            <p className="self-center">{itemsLeft} items left</p>
+            <ul className="py-1 flex  gap-4 font-bold max-sm:absolute max-sm:mt-12 max-sm:w-full max-sm:bg-light-vl-gray max-sm:dark:bg-dark-vd-desaturated-blue max-sm:left-0 max-sm:justify-center max-sm:rounded-md max-sm:py-3 max-sm:text-[0.8rem] max-sm:gap-4">
               <li
                 className={
                   "hover:cursor-pointer hover:text-light-vd-grayish-blue dark:hover:text-dark-l-grayish-blue-hover " +
@@ -222,6 +222,9 @@ function App() {
               Clear Completed
             </button>
           </footer>
+          <p className=" text-center text-xs px-2 py-12 text-light-d-grayish-blue dark:text-light-vd-grayish-blue max-sm:mt-12">
+            Drag and drop to reorder list
+          </p>
         </main>
       </div>
       <Footer />

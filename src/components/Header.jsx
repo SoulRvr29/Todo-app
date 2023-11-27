@@ -1,7 +1,7 @@
 const Header = ({ darkMode, darkModeToggle }) => {
   return (
-    <header className="flex justify-between my-4">
-      <h1 className="text-light-vl-gray uppercase tracking-[10px] font-bold text-3xl max-sm:text-2xl">
+    <header className="flex justify-between my-7 max-sm:mt-0 max-sm:mb-6">
+      <h1 className="text-light-vl-gray uppercase tracking-[15px] max-sm:tracking-[10px] font-bold text-4xl max-sm:text-2xl">
         todo
       </h1>
       <button onClick={() => darkModeToggle()}>
