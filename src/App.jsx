@@ -105,7 +105,7 @@ function App() {
   };
 
   return (
-    <div className="w-screen h-screen grid ">
+    <div className="w-screen h-screen grid">
       <picture className="fixed top-0 justify-self-center min-w-max -z-10">
         <source
           media="(min-width: 376px )"
@@ -141,24 +141,31 @@ function App() {
                           key={task.id}
                           index={index}
                         >
-                          {(provided) => (
-                            <div
-                              className="draggable"
-                              {...provided.dragHandleProps}
-                              {...provided.draggableProps}
-                              ref={provided.innerRef}
-                            >
-                              <Todo
-                                index={index}
-                                id={task.id}
-                                key={task.id}
-                                task={task.task}
-                                status={task.status}
-                                setStatus={setStatus}
-                                deleteTask={deleteTask}
-                              />
-                            </div>
-                          )}
+                          {(provided, snapshot) => {
+                            const tailwindClass = [
+                              snapshot.isDragging
+                                ? "draggable drop-shadow-[3px_3px_7px_rgba(0,0,0,0.2)] bg-white dark:bg-dark-vd-desaturated-blue2 "
+                                : "draggable bg-light-vl-gray dark:bg-dark-vd-desaturated-blue",
+                            ];
+                            return (
+                              <div
+                                className={tailwindClass}
+                                {...provided.dragHandleProps}
+                                {...provided.draggableProps}
+                                ref={provided.innerRef}
+                              >
+                                <Todo
+                                  index={index}
+                                  id={task.id}
+                                  key={task.id}
+                                  task={task.task}
+                                  status={task.status}
+                                  setStatus={setStatus}
+                                  deleteTask={deleteTask}
+                                />
+                              </div>
+                            );
+                          }}
                         </Draggable>
                       )
                   )}

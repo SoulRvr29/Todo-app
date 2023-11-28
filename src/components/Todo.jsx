@@ -5,7 +5,7 @@ const Todo = ({ id, index, task, status, setStatus, deleteTask }) => {
   return (
     <div
       className={
-        "todo flex justify-between items-center gap-5 bg-light-vl-gray dark:bg-dark-vd-desaturated-blue dark:border-dark-vd-grayish-blue border-b border-light-l-grayish-blue p-4 max-sm:p-[11px] max-sm:gap-3  " +
+        "todo flex justify-between items-center gap-5  dark:border-dark-vd-grayish-blue border-b border-light-l-grayish-blue p-4 max-sm:p-[11px] max-sm:gap-3  " +
         (index == 0 ? " rounded-t-md" : " rounded-none")
       }
       onMouseEnter={() => setCloseBtn(true)}
