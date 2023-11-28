@@ -145,7 +145,10 @@ function App() {
                             const tailwindClass = [
                               snapshot.isDragging
                                 ? "draggable drop-shadow-[3px_3px_7px_rgba(0,0,0,0.2)] bg-white dark:bg-dark-vd-desaturated-blue2 "
-                                : "draggable bg-light-vl-gray dark:bg-dark-vd-desaturated-blue",
+                                : "draggable bg-light-vl-gray dark:bg-dark-vd-desaturated-blue" +
+                                  (index == 0
+                                    ? " rounded-t-md"
+                                    : " rounded-none"),
                             ];
                             return (
                               <div
