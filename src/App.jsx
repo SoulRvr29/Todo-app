@@ -69,6 +69,14 @@ function App() {
     setItemsLeft(actualItemsLeft);
   };
 
+  const editTask = (id, editedTask) => {
+    setTasks(
+      tasks.map((item) =>
+        item.id == id ? { ...item, task: editedTask } : item
+      )
+    );
+  };
+
   const deleteTask = (id, index) => {
     setTasks(tasks.filter((task) => task.id != id));
     if (tasks[index].status == false) {
@@ -165,6 +173,7 @@ function App() {
                                   status={task.status}
                                   setStatus={setStatus}
                                   deleteTask={deleteTask}
+                                  editTask={editTask}
                                 />
                               </div>
                             );
