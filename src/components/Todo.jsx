@@ -1,5 +1,4 @@
 import { useState } from "react";
-import form from "./Form";
 
 const Todo = ({ id, index, task, status, setStatus, deleteTask, editTask }) => {
   const [closeBtn, setCloseBtn] = useState(false);
@@ -18,7 +17,7 @@ const Todo = ({ id, index, task, status, setStatus, deleteTask, editTask }) => {
         className={
           status
             ? "check-btn rounded-full border border-light-vl-grayish-blue dark:border-dark-vd-grayish-blue  max-sm:scale-75"
-            : "border dark:border-dark-vd-grayish-blue hover:border-light-d-grayish-blue dark:hover:border-dark-d-grayish-blue rounded-full border-light-vl-grayish-blue max-sm:scale-75"
+            : "border dark:border-dark-vd-grayish-blue hover:border-bright-blue dark:hover:border-bright-blue rounded-full border-light-vl-grayish-blue max-sm:scale-75"
         }
       >
         <svg
@@ -49,10 +48,10 @@ const Todo = ({ id, index, task, status, setStatus, deleteTask, editTask }) => {
       ) : (
         <form
           onSubmit={() => setEditMode(false)}
-          className="w-full bg-light-vl-gray dark:bg-dark-vd-desaturated-blue caret-bright-blue max-sm:text-xs border border-light-l-grayish-blue px-1"
+          className="w-full bg-light-vl-gray dark:bg-dark-vd-desaturated-blue caret-bright-blue max-sm:text-xs border border-light-l-grayish-blue px-1 "
         >
           <input
-            className="w-full bg-light-vl-gray dark:bg-dark-vd-desaturated-blue caret-bright-blue max-sm:text-xs"
+            className="w-full bg-light-vl-gray dark:bg-dark-vd-desaturated-blue caret-bright-blue max-sm:text-xs  "
             type="text"
             value={task}
             autoFocus={true}

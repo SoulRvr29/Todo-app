@@ -1,4 +1,4 @@
-const form = ({ addTask, setStatus, setNewTask }) => {
+const form = ({ addTask, setNewTask }) => {
   return (
     <form
       className="flex w-full items-center gap-5 bg-light-vl-gray dark:bg-dark-vd-desaturated-blue p-4 mb-5 max-sm:p-2 max-sm:gap-3 rounded-md"
