@@ -38,7 +38,7 @@ const Todo = ({ id, index, task, status, setStatus, deleteTask, editTask }) => {
       {!editMode ? (
         <p
           className={
-            "hover:cursor-grab w-full max-sm:text-xs px-1 " +
+            "hover:cursor-grab w-full max-sm:text-xs px-1 border border-transparent " +
             (status &&
               " line-through text-light-l-grayish-blue dark:text-dark-d-grayish-blue")
           }
@@ -66,7 +66,7 @@ const Todo = ({ id, index, task, status, setStatus, deleteTask, editTask }) => {
         onClick={() => setEditMode(!editMode)}
       >
         <svg
-          className="max-sm:scale-75 dark:fill-dark-vd-grayish-blue fill-light-vd-grayish-blue hover:fill-bright-blue dark:hover:fill-bright-blue"
+          className="-mr-1 max-sm:m-0 max-sm:scale-90 dark:fill-dark-vd-grayish-blue fill-light-vd-grayish-blue hover:fill-bright-blue dark:hover:fill-bright-blue"
           xmlns="http://www.w3.org/2000/svg"
           width="18"
           height="18"
@@ -89,7 +89,7 @@ const Todo = ({ id, index, task, status, setStatus, deleteTask, editTask }) => {
           xmlns="http://www.w3.org/2000/svg"
           width="18"
           height="18"
-          className="max-sm:scale-75 dark:fill-dark-vd-grayish-blue fill-light-vd-grayish-blue hover:fill-bright-blue dark:hover:fill-bright-blue"
+          className="max-sm:scale-90 dark:fill-dark-vd-grayish-blue fill-light-vd-grayish-blue hover:fill-bright-blue dark:hover:fill-bright-blue"
         >
           <path
             fillRule="evenodd"
