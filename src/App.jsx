@@ -189,11 +189,11 @@ function App() {
           {todoLength == 0 && (
             <div className="text-center justify-between items-center gap-5 bg-light-vl-gray border-b border-light-l-grayish-blue p-4 max-sm:p-2 max-sm:gap-3 rounded-t-md dark:bg-dark-vd-desaturated-blue dark:border-dark-vd-grayish-blue ">
               {filter == "all" ? (
-                <p>List is empty</p>
+                <p className="max-sm:text-sm">List is empty</p>
               ) : filter == "active" ? (
-                <p>No active todos</p>
+                <p className="max-sm:text-sm">No active todos</p>
               ) : (
-                <p>No completed todos</p>
+                <p className="max-sm:text-sm">No completed todos</p>
               )}
             </div>
           )}
