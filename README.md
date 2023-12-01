@@ -26,7 +26,9 @@ Users should be able to:
 - Clear all completed todos
 - Toggle light and dark mode
 - **Bonus**: Drag and drop to reorder items on the list
-- **My extra bonus**: Edit todos on the list
+---
+- **My bonus**: Edit todos on the list
+- **My bonus 2**: Save todos in Local Storage
 
 ### Screenshot
 
