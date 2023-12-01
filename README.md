@@ -27,8 +27,10 @@ Users should be able to:
 - Toggle light and dark mode
 - **Bonus**: Drag and drop to reorder items on the list
 ---
-- **My bonus**: Edit todos on the list
-- **My bonus 2**: Save todos in Local Storage
+My extra bonus:
+
+- Edit todos on the list
+- Save todos in Local Storage
 
 ### Screenshot
 
