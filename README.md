@@ -7,7 +7,6 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 - [The challenge](#the-challenge)
 - [Screenshot](#screenshot)
 - [Links](#links)
-- [My process](#my-process)
 - [Built with](#built-with)
 - [What I learned](#what-i-learned)
 - [Useful resources](#useful-resources)
@@ -26,7 +25,11 @@ Users should be able to:
 - Clear all completed todos
 - Toggle light and dark mode
 - **Bonus**: Drag and drop to reorder items on the list
-- **My extra bonus**: Edit todos on the list
+  
+My extra bonus:
+
+- Edit todos on the list
+- Save todos in browser Local Storage
 
 ### Screenshot
 
