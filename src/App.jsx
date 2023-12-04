@@ -114,6 +114,21 @@ function App() {
 
   return (
     <div className="w-screen h-screen grid">
+      <picture className="fixed top-0 left-0 w-screen -z-10 overflow-hidden">
+        <source
+          media="(min-width: 376px )"
+          srcSet={darkMode ? "bg-desktop-dark.jpg" : "bg-desktop-light.jpg"}
+        />
+        <source
+          media="(max-width: 375px )"
+          srcSet={darkMode ? "bg-mobile-dark.jpg" : "bg-mobile-light.jpg"}
+        />
+        <img
+          className="max-h-[300px] w-full blur-xl scale-125"
+          src="bg-desktop-dark.jpg"
+          alt="bg image"
+        />
+      </picture>
       <picture className="fixed top-0 justify-self-center min-w-max -z-10">
         <source
           media="(min-width: 376px )"

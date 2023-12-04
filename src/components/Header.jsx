@@ -10,7 +10,7 @@ const Header = ({ darkMode, darkModeToggle }) => {
             xmlns="http://www.w3.org/2000/svg"
             width="26"
             height="26"
-            className="max-sm:scale-75"
+            className="max-sm:scale-75 mode-icon"
           >
             <path
               fill="#FFF"
@@ -23,7 +23,7 @@ const Header = ({ darkMode, darkModeToggle }) => {
             xmlns="http://www.w3.org/2000/svg"
             width="26"
             height="26"
-            className="max-sm:scale-75"
+            className="max-sm:scale-75 mode-icon"
           >
             <path
               fill="#FFF"
