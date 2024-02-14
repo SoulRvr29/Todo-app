@@ -37,7 +37,7 @@ My extra bonus:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Add solution URL here](https://your-solution-url.com](https://www.frontendmentor.io/solutions/todo-app-_R0-QfV8DB)
 - Live Site URL: [https://soulrvr29.github.io/Todo-app/](https://soulrvr29.github.io/Todo-app/)
 
 ### Built with
